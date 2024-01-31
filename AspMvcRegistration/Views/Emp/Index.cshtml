@@ -1,0 +1,32 @@
+﻿@model AspMvcRegistration.Models.Emp
+@using (Html.BeginForm("Index", "Emp", FormMethod.Post))
+{
+    @Html.Label("Enter Eno")
+    @Html.TextBoxFor(model => model.Eno)
+
+    <br />
+    @Html.Label("Enter EName")
+    @Html.TextBoxFor(model => model.Ename)
+
+    <br />
+    @Html.Label("Select Dept")
+    @Html.DropDownList("dept", TempData["iedept"] as List<SelectListItem>)
+    <br/>
+    @Html.Label("Select Hobby")
+    foreach(string item in TempData["lihb"] as List<string>)   
+    {
+        @Html.CheckBox(item)@item
+     }
+    <br/>
+    <div>
+        @Html.Label("Enter Gender")
+        <input id="gender" name="gender" value="Male" type="radio" />Male
+        <input id="gender" name="gender" value="Female" type="radio" />Female
+    </div>
+   <br/>
+    @Html.Label("Enter Salary")
+    @Html.TextBoxFor(model=>model.Salary)
+    <br/>
+    <input type="submit" value="Register" />
+}
+

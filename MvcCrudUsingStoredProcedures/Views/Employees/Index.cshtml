@@ -1,0 +1,38 @@
+﻿@model MvcCrudUsingStoredProcedures.Models.Employees
+
+@using (Html.BeginForm("Index", "Employees", FormMethod.Post))
+{
+    @Html.Label("Enter Id")
+    @Html.TextBoxFor(model => model.Id)
+    <br />
+    <br />
+    @Html.Label("Enter Name")
+    @Html.TextBoxFor(model => model.Name)
+    <br />
+    <br />
+    @Html.Label("Enter Salary")
+    @Html.TextBoxFor(model => model.Salary)
+    <br />
+    <br />
+    <input type="submit" value="Save" name="b1"/>
+    <input type="submit" value="Update" name="b1" />
+    <br />
+    <table>
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Salary</td>
+        </tr>
+        @foreach (var Item in TempData["ie"] as List<MvcCrudUsingStoredProcedures.Models.Employees>)
+        {
+            <tr>
+                <td>@Item.Id</td>
+                <td>@Item.Name</td>
+                <td>@Item.Salary</td>
+                <td>@Html.ActionLink("Delete", "Delete", new { id = @Item.Id })</td>
+                <td>@Html.ActionLink("Edit", "Edit", new { id = @Item.Id })</td>
+            </tr>
+        }
+
+    </table>
+}
